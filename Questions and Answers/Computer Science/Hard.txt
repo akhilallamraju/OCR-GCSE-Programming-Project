@@ -1,0 +1,29 @@
+What are the three types of buses in a computer?
+a) Address, control and instruction
+b) Address, control and data
+c) Address, data and instruction
+d) Control, data and instruction
+
+Which register holds the address of the next instruction to be fetched?
+a) Control Unit
+b) Memory Address Register
+c) Memory Data Register
+d) Program Counter
+
+What is virtual memory?
+a) Cloud storage used as additional RAM
+b) High-speed internal memory
+c) Secondary storage used as additional RAM
+d) High-speed external memory
+
+What is the purpose of a router?
+a) To broadcast messages across a network
+b) To translate a domain name into an internet address
+c) To send signals across the internet.
+d) To store data and programs
+
+What number system is used to create a MAC Address?
+a) Binary
+b) Denary
+c) Octal
+d) Hexadecimal

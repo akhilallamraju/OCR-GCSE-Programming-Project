@@ -1,0 +1,24 @@
+What is a core?
+a) A system that has many processors
+b) A processing unit within the CPU
+c) Another name for the Control Unit
+
+What is flash memory used for?
+a) Primary Storage
+b) Extending the available ROM
+c) Secondary Storage
+
+What is the (main) purpose of secondary storage?
+a) To store data long-term
+b) To hold data that is currently in use
+c) To increase the RAM capacity
+
+What are the two network models?
+a) Star and mesh
+b) Wired and wireless
+c) Client-server and peer-to-peer
+
+What is a protocol?
+a) A set of rules that govern how a network should communicate
+b) A unique serial number assigned to an NIC
+c) A component of a packet

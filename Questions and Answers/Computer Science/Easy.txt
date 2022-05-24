@@ -1,0 +1,19 @@
+What is clock speed measured in?
+a) Hertz (Hz)
+b) Bequerels (Bq)
+
+What are the two types of primary memory?
+a) RAM and ROM
+b) Flash memory and cache memory
+
+What is a LAN?
+a) Large Area Network
+b) Local Area Network
+
+What is malware?
+a) Old and damaged hardware that is not in use
+b) Malicious software designed to hack a system
+
+What is a backup?
+a) A spare computer
+b) A copy of data made in case of data loss

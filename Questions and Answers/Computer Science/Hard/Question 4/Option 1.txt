@@ -1,0 +1,1 @@
+a) To broadcast messages across the network

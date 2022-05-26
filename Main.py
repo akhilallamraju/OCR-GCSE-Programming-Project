@@ -3,9 +3,9 @@ from tkinter import *
 # Imports the 'messagebox' sub-module from Tkinter so that messages can be displayed
 from tkinter import messagebox
 # Imports the italic sub-module from 'tkinter.font' so that italic fonts can be displayed 
-from tkinter.font import ITALIC
+from tkinter.font import BOLD, ITALIC
 
-import ctypes, sys
+import ctypes, os, sys
 from os.path import exists
 
 
@@ -75,6 +75,17 @@ def exit():
     win.destroy()
     sys.exit()
 
+def delete():
+    askDelete = messagebox.askyesno("Delete account!", "Are you sure you want to delete your account?")
+
+    if askDelete == YES:
+        os.remove(f"Accounts/{usernameIn}.txt")
+        os.remove(f"Highscores/{usernameIn}.txt")
+
+        main()
+
+    else:
+        pass
 
 # --- FLAGS FUNCTIONS ---
 def flagsEasy():
@@ -1761,13 +1772,1404 @@ def flagsModeSelection():
 
 # --- COMPUTER SCIENCE FUNCTIONS ---
 def compSciEasy():
-    pass
+
+    score = 0
+
+    def oneCorrect():
+        # With the 'global' method, variables declared in the function can be used elsewhere
+        global oneScore
+
+        int(score)
+
+        orgScore = score
+        oneScore = orgScore + 1
+
+        q2()
+        messagebox.showinfo("Correct answer!", "You have selected the correct answer.")
+
+    def oneWrong():
+        # With the 'global' method, variables declared in the function can be used elsewhere
+        global oneScore
+
+        int(score)
+
+        orgScore = score
+        oneScore = orgScore
+
+        q2()
+        messagebox.showerror("Inorrect answer!", "The clock speed is measured in Hertz (Hz).")
+
+    def q1():
+        # Clears the Window by identifying each 'child' on the Window and then destroying it until all of the 'children' have been destroyed
+        for widget in win.winfo_children():
+            widget.destroy()
+
+        q = open(f"Questions and Answers/Computer Science/Easy/Question 1/Question.txt", "r")
+        o1 = open(f"Questions and Answers/Computer Science/Easy/Question 1/Option 1.txt", "r")
+        o2 = open(f"Questions and Answers/Computer Science/Easy/Question 1/Option 2.txt", "r")
+        
+        qLine = q.readlines()
+        o1Line = o1.readlines()
+        o2Line = o2.readlines()
+
+        question = qLine[0]
+        optOne = o1Line[0]
+        optTwo = o2Line[0]
+
+        # Title
+        Label(win, image = compSciIcon, text = " Question 1: Computer Science (Easy)", compound = LEFT, bg = grey, fg = white, width = 2560, height = 120, font = (font, 24)).pack()
+
+        # Score label
+        Label(win, text = f"Score: {score}", bg = white, fg = grey, font = (font, 12)).pack(anchor = W)
+
+        # Question label
+        Label(win, text = question, bg = white, fg = grey, font = (font, 12)).pack()
+
+        # A placeholder
+        Label(win, text = "", bg = white).pack()
+
+        # Option 1 button
+        Button(win, text = optOne, borderwidth = 0, command = oneCorrect, bg = grey, fg = white, width = 16, height = 2, font = (font, 12)).pack()
+
+        # A placeholder
+        Label(win, text = "", bg = white).pack()
+
+        # Option 2 button
+        Button(win, text = optTwo, borderwidth = 0, command = oneWrong, bg = grey, fg = white, width = 16, height = 2, font = (font, 12)).pack()
+
+
+        # Exit button
+        Button(win, image = exitIcon, borderwidth = 0, command = exit, compound = LEFT, bg = grey, fg = white, width = 65, height = 65).pack(side = BOTTOM, anchor = NW)
+    
+        # Logout button
+        Button(win, image = logoutIcon, borderwidth = 0, command = main, compound = LEFT, bg = grey, fg = white, width = 65, height = 65).pack(side = BOTTOM, anchor = NW)
+
+        # To Dashboard Icon
+        Button(win, image = homeIcon, borderwidth = 0, command = dashboard, compound = LEFT, bg = grey, fg = white, width = 65, height = 65).pack(side = BOTTOM, anchor = NW)
+
+
+    def twoCorrect():
+        # With the 'global' method, variables declared in the function can be used elsewhere
+        global twoScore
+
+        int(oneScore)
+
+        twoScore = oneScore + 1
+
+        q3()
+        messagebox.showinfo("Correct answer!", "You have selected the correct answer.")
+
+    def twoWrong():
+        # With the 'global' method, variables declared in the function can be used elsewhere
+        global twoScore
+
+        int(oneScore)
+
+        twoScore = oneScore
+
+        q3()
+        messagebox.showerror("Incorrect answer!", "The two types of memory are ROM and RAM.")
+
+    def q2():
+        # Clears the Window by identifying each 'child' on the Window and then destroying it until all of the 'children' have been destroyed
+        for widget in win.winfo_children():
+            widget.destroy()
+
+        q = open(f"Questions and Answers/Computer Science/Easy/Question 2/Question.txt", "r")
+        o1 = open(f"Questions and Answers/Computer Science/Easy/Question 2/Option 1.txt", "r")
+        o2 = open(f"Questions and Answers/Computer Science/Easy/Question 2/Option 2.txt", "r")
+        
+        qLine = q.readlines()
+        o1Line = o1.readlines()
+        o2Line = o2.readlines()
+
+        question = qLine[0]
+        optOne = o1Line[0]
+        optTwo = o2Line[0]
+
+        # Title
+        Label(win, image = compSciIcon, text = " Question 2: Computer Science (Easy)", compound = LEFT, bg = grey, fg = white, width = 2560, height = 120, font = (font, 24)).pack()
+
+        # Score label
+        Label(win, text = f"Score: {oneScore}", bg = white, fg = grey, font = (font, 12)).pack(anchor = W)
+
+        # Question label
+        Label(win, text = question, bg = white, fg = grey, font = (font, 12)).pack()
+
+        # A placeholder
+        Label(win, text = "", bg = white).pack()
+
+        # Option 1 button
+        Button(win, text = optOne, borderwidth = 0, command = twoCorrect, bg = grey, fg = white, width = 20, height = 2, font = (font, 12)).pack()
+
+        # A placeholder
+        Label(win, text = "", bg = white).pack()
+
+        # Option 2 button
+        Button(win, text = optTwo, borderwidth = 0, command = twoWrong, bg = grey, fg = white, width = 20, height = 2, font = (font, 12)).pack()
+
+
+        # Exit button
+        Button(win, image = exitIcon, borderwidth = 0, command = exit, compound = LEFT, bg = grey, fg = white, width = 65, height = 65).pack(side = BOTTOM, anchor = NW)
+    
+        # Logout button
+        Button(win, image = logoutIcon, borderwidth = 0, command = main, compound = LEFT, bg = grey, fg = white, width = 65, height = 65).pack(side = BOTTOM, anchor = NW)
+
+        # To Dashboard Icon
+        Button(win, image = homeIcon, borderwidth = 0, command = dashboard, compound = LEFT, bg = grey, fg = white, width = 65, height = 65).pack(side = BOTTOM, anchor = NW)
+
+
+    def threeCorrect():
+        # With the 'global' method, variables declared in the function can be used elsewhere
+        global threeScore
+
+        int(twoScore)
+
+        threeScore = twoScore + 1
+
+        q4()
+        messagebox.showinfo("Correct answer!", "You have selected the correct answer.")
+
+    def threeWrong():
+        # With the 'global' method, variables declared in the function can be used elsewhere
+        global threeScore
+
+        int(twoScore)
+
+        threeScore = twoScore
+
+        q4()
+        messagebox.showerror("Inorrect answer!", "A LAN is a Local Area Network.")
+
+    def q3():
+        # Clears the Window by identifying each 'child' on the Window and then destroying it until all of the 'children' have been destroyed
+        for widget in win.winfo_children():
+            widget.destroy()
+
+        q = open(f"Questions and Answers/Computer Science/Easy/Question 3/Question.txt", "r")
+        o1 = open(f"Questions and Answers/Computer Science/Easy/Question 3/Option 1.txt", "r")
+        o2 = open(f"Questions and Answers/Computer Science/Easy/Question 3/Option 2.txt", "r")
+        
+        qLine = q.readlines()
+        o1Line = o1.readlines()
+        o2Line = o2.readlines()
+
+        question = qLine[0]
+        optOne = o1Line[0]
+        optTwo = o2Line[0]
+
+        # Title
+        Label(win, image = compSciIcon, text = " Question 3: Computer Science (Easy)", compound = LEFT, bg = grey, fg = white, width = 2560, height = 120, font = (font, 24)).pack()
+
+        # Score label
+        Label(win, text = f"Score: {twoScore}", bg = white, fg = grey, font = (font, 12)).pack(anchor = W)
+
+        # Question label
+        Label(win, text = question, bg = white, fg = grey, font = (font, 12)).pack()
+
+        # A placeholder
+        Label(win, text = "", bg = white).pack()
+
+        # Option 1 button
+        Button(win, text = optOne, borderwidth = 0, command = threeWrong, bg = grey, fg = white, width = 20, height = 2, font = (font, 12)).pack()
+
+        # A placeholder
+        Label(win, text = "", bg = white).pack()
+
+        # Option 2 button
+        Button(win, text = optTwo, borderwidth = 0, command = threeCorrect, bg = grey, fg = white, width = 20, height = 2, font = (font, 12)).pack()
+
+
+        # Exit button
+        Button(win, image = exitIcon, borderwidth = 0, command = exit, compound = LEFT, bg = grey, fg = white, width = 65, height = 65).pack(side = BOTTOM, anchor = NW)
+    
+        # Logout button
+        Button(win, image = logoutIcon, borderwidth = 0, command = main, compound = LEFT, bg = grey, fg = white, width = 65, height = 65).pack(side = BOTTOM, anchor = NW)
+
+        # To Dashboard Icon
+        Button(win, image = homeIcon, borderwidth = 0, command = dashboard, compound = LEFT, bg = grey, fg = white, width = 65, height = 65).pack(side = BOTTOM, anchor = NW)
+
+
+    def fourCorrect():
+        # With the 'global' method, variables declared in the function can be used elsewhere
+        global fourScore
+
+        int(threeScore)
+
+        fourScore = threeScore + 1
+
+        q5()
+        messagebox.showinfo("Correct answer!", "You have selected the correct answer.")
+
+    def fourWrong():
+        # With the 'global' method, variables declared in the function can be used elsewhere
+        global fourScore
+
+        int(threeScore)
+
+        fourScore = threeScore
+
+        q5()
+        messagebox.showerror("Incorrect answer!", "Malware is malicious software designed to harm a computer.")
+
+    def q4():
+        # Clears the Window by identifying each 'child' on the Window and then destroying it until all of the 'children' have been destroyed
+        for widget in win.winfo_children():
+            widget.destroy()
+
+        q = open(f"Questions and Answers/Computer Science/Easy/Question 4/Question.txt", "r")
+        o1 = open(f"Questions and Answers/Computer Science/Easy/Question 4/Option 1.txt", "r")
+        o2 = open(f"Questions and Answers/Computer Science/Easy/Question 4/Option 2.txt", "r")
+        
+        qLine = q.readlines()
+        o1Line = o1.readlines()
+        o2Line = o2.readlines()
+
+        question = qLine[0]
+        optOne = o1Line[0]
+        optTwo = o2Line[0]
+
+        # Title
+        Label(win, image = compSciIcon, text = " Question 4: Computer Science (Easy)", compound = LEFT, bg = grey, fg = white, width = 2560, height = 120, font = (font, 24)).pack()
+
+        # Score label
+        Label(win, text = f"Score: {threeScore}", bg = white, fg = grey, font = (font, 12)).pack(anchor = W)
+
+        # Question label
+        Label(win, text = question, bg = white, fg = grey, font = (font, 12)).pack()
+
+        # A placeholder
+        Label(win, text = "", bg = white).pack()
+
+        # Option 1 button
+        Button(win, text = optOne, borderwidth = 0, command = fourWrong, bg = grey, fg = white, width = 45, height = 2, font = (font, 12)).pack()
+
+        # A placeholder
+        Label(win, text = "", bg = white).pack()
+
+        # Option 2 button
+        Button(win, text = optTwo, borderwidth = 0, command = fourCorrect, bg = grey, fg = white, width = 45, height = 2, font = (font, 12)).pack()
+
+
+        # Exit button
+        Button(win, image = exitIcon, borderwidth = 0, command = exit, compound = LEFT, bg = grey, fg = white, width = 65, height = 65).pack(side = BOTTOM, anchor = NW)
+    
+        # Logout button
+        Button(win, image = logoutIcon, borderwidth = 0, command = main, compound = LEFT, bg = grey, fg = white, width = 65, height = 65).pack(side = BOTTOM, anchor = NW)
+
+        # To Dashboard Icon
+        Button(win, image = homeIcon, borderwidth = 0, command = dashboard, compound = LEFT, bg = grey, fg = white, width = 65, height = 65).pack(side = BOTTOM, anchor = NW)
+
+
+    def fiveCorrect():
+        # With the 'global' method, variables declared in the function can be used elsewhere
+        global fiveScore
+
+        int(fourScore)
+
+        fiveScore = fourScore + 1
+
+        end()
+        messagebox.showinfo("Correct answer!", "You have selected the correct answer.")
+
+    def fiveWrong():
+        # With the 'global' method, variables declared in the function can be used elsewhere
+        global fiveScore
+
+        int(fourScore)
+
+        fiveScore = fourScore
+
+        end()
+        messagebox.showerror("Incorrect answer!", "A backup is a spare copy of data in case the data is lost.")
+
+    def q5():
+        # Clears the Window by identifying each 'child' on the Window and then destroying it until all of the 'children' have been destroyed
+        for widget in win.winfo_children():
+            widget.destroy()
+
+        q = open(f"Questions and Answers/Computer Science/Easy/Question 5/Question.txt", "r")
+        o1 = open(f"Questions and Answers/Computer Science/Easy/Question 5/Option 1.txt", "r")
+        o2 = open(f"Questions and Answers/Computer Science/Easy/Question 5/Option 2.txt", "r")
+        
+        qLine = q.readlines()
+        o1Line = o1.readlines()
+        o2Line = o2.readlines()
+
+        question = qLine[0]
+        optOne = o1Line[0]
+        optTwo = o2Line[0]
+
+        # Title
+        Label(win, image = compSciIcon, text = " Question 5: Computer Science (Easy)", compound = LEFT, bg = grey, fg = white, width = 2560, height = 120, font = (font, 24)).pack()
+
+        # Score label
+        Label(win, text = f"Score: {fourScore}", bg = white, fg = grey, font = (font, 12)).pack(anchor = W)
+
+        # Question label
+        Label(win, text = question, bg = white, fg = grey, font = (font, 12)).pack()
+
+        # A placeholder
+        Label(win, text = "", bg = white).pack()
+
+        # Option 1 button
+        Button(win, text = optOne, borderwidth = 0, command = fiveWrong, bg = grey, fg = white, width = 22, height = 2, font = (font, 12)).pack()
+
+        # A placeholder
+        Label(win, text = "", bg = white).pack()
+
+        # Option 2 button
+        Button(win, text = optTwo, borderwidth = 0, command = fiveCorrect, bg = grey, fg = white, width = 22, height = 2, font = (font, 12)).pack()
+
+
+        # Exit button
+        Button(win, image = exitIcon, borderwidth = 0, command = exit, compound = LEFT, bg = grey, fg = white, width = 65, height = 65).pack(side = BOTTOM, anchor = NW)
+    
+        # Logout button
+        Button(win, image = logoutIcon, borderwidth = 0, command = main, compound = LEFT, bg = grey, fg = white, width = 65, height = 65).pack(side = BOTTOM, anchor = NW)
+
+        # To Dashboard Icon
+        Button(win, image = homeIcon, borderwidth = 0, command = dashboard, compound = LEFT, bg = grey, fg = white, width = 65, height = 65).pack(side = BOTTOM, anchor = NW)
+
+
+    def end():
+        # Clears the Window by identifying each 'child' on the Window and then destroying it until all of the 'children' have been destroyed
+        for widget in win.winfo_children():
+            widget.destroy()
+
+
+        # Updates highscore if necessary
+        f = open(f"Highscores/{usernameIn}.txt", "r")
+        line = f.readlines()
+        prevHighscore = line[1]
+
+        if int(fiveScore) >= int(prevHighscore):
+            f = open(f"Highscores/{usernameIn}.txt", "w")
+
+            f.write("Computer Science (Easy)\n")
+            f.write(str(fiveScore))
+            
+        else:
+            pass
+
+
+        # Title
+        Label(win, image = compSciIcon, text = " Computer Science (Easy)", compound = LEFT, bg = grey, fg = white, width = 2560, height = 120, font = (font, 24)).pack()
+
+        # A placeholder
+        Label(win, text = "", bg = white).pack()
+
+        str(fiveScore)
+
+        # Overall score label
+        Label(win, text = f"Well done! You scored {fiveScore} / 5.", bg = white, fg = grey, font = (font, 18)).pack()
+
+        # Calculate percentage earned
+        int(fiveScore)
+        percentage = (fiveScore / 5) * 100
+
+        # Percentage label
+        Label(win, text = f"(That's {percentage}%)", bg = white, fg = grey, font = (font, 10, ITALIC)).pack()
+
+        # A placeholder
+        Label(win, text = "", bg = white).pack()
+
+        # A placeholder
+        Label(win, text = "", bg = white).pack()
+
+        # Back 2 home label
+        Label(win, text = f"Click the button below to go back home", bg = white, fg = grey, font = (font, 12)).pack()
+
+        # Another home button
+        Button(win, image = homeIcon, borderwidth = 0, command = dashboard, compound = LEFT, bg = grey, fg = white, width = 65, height = 65).pack()
+
+
+        # Exit button
+        Button(win, image = exitIcon, borderwidth = 0, command = exit, compound = LEFT, bg = grey, fg = white, width = 65, height = 65).pack(side = BOTTOM, anchor = NW)
+    
+        # Logout button
+        Button(win, image = logoutIcon, borderwidth = 0, command = main, compound = LEFT, bg = grey, fg = white, width = 65, height = 65).pack(side = BOTTOM, anchor = NW)
+
+        # To Dashboard Icon
+        Button(win, image = homeIcon, borderwidth = 0, command = dashboard, compound = LEFT, bg = grey, fg = white, width = 65, height = 65).pack(side = BOTTOM, anchor = NW)
+
+
+    q1()
 
 def compSciMedium():
-    pass
+
+    score = 0
+
+    def oneCorrect():
+        global oneScore
+
+        int(score)
+
+        orgScore = score
+        oneScore = orgScore + 1
+
+        q2()
+        messagebox.showinfo("Correct answer!", "You have selected the correct answer.")
+
+    def oneWrong():
+        # With the 'global' method, variables declared in the function can be used elsewhere
+        global oneScore
+
+        int(score)
+
+        orgScore = score
+        oneScore = orgScore
+
+        q2()
+        messagebox.showerror("Inorrect answer!", "A core is a processing unit within the CPU.")
+
+    def q1():
+        # Clears the Window by identifying each 'child' on the Window and then destroying it until all of the 'children' have been destroyed
+        for widget in win.winfo_children():
+            widget.destroy()
+
+        q = open(f"Questions and Answers/Computer Science/Medium/Question 1/Question.txt", "r")
+        o1 = open(f"Questions and Answers/Computer Science/Medium/Question 1/Option 1.txt", "r")
+        o2 = open(f"Questions and Answers/Computer Science/Medium/Question 1/Option 2.txt", "r")
+        o3 = open(f"Questions and Answers/Computer Science/Medium/Question 1/Option 3.txt", "r")
+        
+        qLine = q.readlines()
+        o1Line = o1.readlines()
+        o2Line = o2.readlines()
+        o3Line = o3.readlines()
+
+        question = qLine[0]
+        optOne = o1Line[0]
+        optTwo = o2Line[0]
+        optThree = o3Line[0]
+
+        # Title
+        Label(win, image = compSciIcon, text = " Question 1: Computer Science (Medium)", compound = LEFT, bg = grey, fg = white, width = 2560, height = 120, font = (font, 24)).pack()
+
+        # Score label
+        Label(win, text = f"Score: {score}", bg = white, fg = grey, font = (font, 12)).pack(anchor = W)
+
+        # Question label
+        Label(win, text = question, bg = white, fg = grey, font = (font, 12)).pack()
+
+        # A placeholder
+        Label(win, text = "", bg = white).pack()
+
+        # Option 1 button
+        Button(win, text = optOne, borderwidth = 0, command = oneWrong, bg = grey, fg = white, width = 32, height = 2, font = (font, 12)).pack()
+
+        # A placeholder
+        Label(win, text = "", bg = white).pack()
+
+        # Option 2 button
+        Button(win, text = optTwo, borderwidth = 0, command = oneCorrect, bg = grey, fg = white, width = 32, height = 2, font = (font, 12)).pack()
+
+        # A placeholder
+        Label(win, text = "", bg = white).pack()
+
+        # Option 3 button
+        Button(win, text = optThree, borderwidth = 0, command = oneWrong, bg = grey, fg = white, width = 32, height = 2, font = (font, 12)).pack()
+
+
+        # Exit button
+        Button(win, image = exitIcon, borderwidth = 0, command = exit, compound = LEFT, bg = grey, fg = white, width = 65, height = 65).pack(side = BOTTOM, anchor = NW)
+    
+        # Logout button
+        Button(win, image = logoutIcon, borderwidth = 0, command = main, compound = LEFT, bg = grey, fg = white, width = 65, height = 65).pack(side = BOTTOM, anchor = NW)
+
+        # To Dashboard Icon
+        Button(win, image = homeIcon, borderwidth = 0, command = dashboard, compound = LEFT, bg = grey, fg = white, width = 65, height = 65).pack(side = BOTTOM, anchor = NW)
+
+
+    def twoCorrect():
+        global twoScore
+
+        int(oneScore)
+
+        twoScore = oneScore + 1
+
+        q3()
+        messagebox.showinfo("Correct answer!", "You have selected the correct answer.")
+
+    def twoWrong():
+        global twoScore
+
+        int(oneScore)
+
+        twoScore = oneScore
+
+        q3()
+        messagebox.showerror("Incorrect answer!", "Flash memory is used for secondary storage.")
+
+    def q2():
+        # Clears the Window by identifying each 'child' on the Window and then destroying it until all of the 'children' have been destroyed
+        for widget in win.winfo_children():
+            widget.destroy()
+
+        q = open(f"Questions and Answers/Computer Science/Medium/Question 2/Question.txt", "r")
+        o1 = open(f"Questions and Answers/Computer Science/Medium/Question 2/Option 1.txt", "r")
+        o2 = open(f"Questions and Answers/Computer Science/Medium/Question 2/Option 2.txt", "r")
+        o3 = open(f"Questions and Answers/Computer Science/Medium/Question 2/Option 3.txt", "r")
+        
+        qLine = q.readlines()
+        o1Line = o1.readlines()
+        o2Line = o2.readlines()
+        o3Line = o3.readlines()
+
+        question = qLine[0]
+        optOne = o1Line[0]
+        optTwo = o2Line[0]
+        optThree = o3Line[0]
+
+        # Title
+        Label(win, image = compSciIcon, text = " Question 2: Computer Science (Medium)", compound = LEFT, bg = grey, fg = white, width = 2560, height = 120, font = (font, 24)).pack()
+
+        # Score label
+        Label(win, text = f"Score: {oneScore}", bg = white, fg = grey, font = (font, 12)).pack(anchor = W)
+
+        # Question label
+        Label(win, text = question, bg = white, fg = grey, font = (font, 12)).pack()
+
+        # A placeholder
+        Label(win, text = "", bg = white).pack()
+
+        # Option 1 button
+        Button(win, text = optOne, borderwidth = 0, command = twoWrong, bg = grey, fg = white, width = 28, height = 2, font = (font, 12)).pack()
+
+        # A placeholder
+        Label(win, text = "", bg = white).pack()
+
+        # Option 2 button
+        Button(win, text = optTwo, borderwidth = 0, command = twoWrong, bg = grey, fg = white, width = 28, height = 2, font = (font, 12)).pack()
+
+        # A placeholder
+        Label(win, text = "", bg = white).pack()
+
+        # Option 3 button
+        Button(win, text = optThree, borderwidth = 0, command = twoCorrect, bg = grey, fg = white, width = 28, height = 2, font = (font, 12)).pack()
+
+
+        # Exit button
+        Button(win, image = exitIcon, borderwidth = 0, command = exit, compound = LEFT, bg = grey, fg = white, width = 65, height = 65).pack(side = BOTTOM, anchor = NW)
+    
+        # Logout button
+        Button(win, image = logoutIcon, borderwidth = 0, command = main, compound = LEFT, bg = grey, fg = white, width = 65, height = 65).pack(side = BOTTOM, anchor = NW)
+
+        # To Dashboard Icon
+        Button(win, image = homeIcon, borderwidth = 0, command = dashboard, compound = LEFT, bg = grey, fg = white, width = 65, height = 65).pack(side = BOTTOM, anchor = NW)
+
+
+    def threeCorrect():
+        global threeScore
+
+        int(twoScore)
+
+        threeScore = twoScore + 1
+
+        q4()
+        messagebox.showinfo("Correct answer!", "You have selected the correct answer.")
+
+    def threeWrong():
+        global threeScore
+
+        int(twoScore)
+
+        threeScore = twoScore
+
+        q4()
+        messagebox.showerror("Incorrect answer!", "Secondary storage is mainly used to store data long-term.")
+
+    def q3():
+        # Clears the Window by identifying each 'child' on the Window and then destroying it until all of the 'children' have been destroyed
+        for widget in win.winfo_children():
+            widget.destroy()
+
+        q = open(f"Questions and Answers/Computer Science/Medium/Question 3/Question.txt", "r")
+        o1 = open(f"Questions and Answers/Computer Science/Medium/Question 3/Option 1.txt", "r")
+        o2 = open(f"Questions and Answers/Computer Science/Medium/Question 3/Option 2.txt", "r")
+        o3 = open(f"Questions and Answers/Computer Science/Medium/Question 3/Option 3.txt", "r")
+        
+        qLine = q.readlines()
+        o1Line = o1.readlines()
+        o2Line = o2.readlines()
+        o3Line = o3.readlines()
+
+        question = qLine[0]
+        optOne = o1Line[0]
+        optTwo = o2Line[0]
+        optThree = o3Line[0]
+
+        # Title
+        Label(win, image = compSciIcon, text = " Question 3: Computer Science (Medium)", compound = LEFT, bg = grey, fg = white, width = 2560, height = 120, font = (font, 24)).pack()
+
+        # Score label
+        Label(win, text = f"Score: {twoScore}", bg = white, fg = grey, font = (font, 12)).pack(anchor = W)
+
+        # Question label
+        Label(win, text = question, bg = white, fg = grey, font = (font, 12)).pack()
+
+        # A placeholder
+        Label(win, text = "", bg = white).pack()
+
+        # Option 1 button
+        Button(win, text = optOne, borderwidth = 0, command = threeCorrect, bg = grey, fg = white, width = 36, height = 2, font = (font, 12)).pack()
+
+        # A placeholder
+        Label(win, text = "", bg = white).pack()
+
+        # Option 2 button
+        Button(win, text = optTwo, borderwidth = 0, command = threeWrong, bg = grey, fg = white, width = 36, height = 2, font = (font, 12)).pack()
+
+        # A placeholder
+        Label(win, text = "", bg = white).pack()
+
+        # Option 3 button
+        Button(win, text = optThree, borderwidth = 0, command = threeWrong, bg = grey, fg = white, width = 36, height = 2, font = (font, 12)).pack()
+
+
+        # Exit button
+        Button(win, image = exitIcon, borderwidth = 0, command = exit, compound = LEFT, bg = grey, fg = white, width = 65, height = 65).pack(side = BOTTOM, anchor = NW)
+    
+        # Logout button
+        Button(win, image = logoutIcon, borderwidth = 0, command = main, compound = LEFT, bg = grey, fg = white, width = 65, height = 65).pack(side = BOTTOM, anchor = NW)
+
+        # To Dashboard Icon
+        Button(win, image = homeIcon, borderwidth = 0, command = dashboard, compound = LEFT, bg = grey, fg = white, width = 65, height = 65).pack(side = BOTTOM, anchor = NW)
+
+
+    def fourCorrect():
+        global fourScore
+
+        int(threeScore)
+
+        fourScore = threeScore + 1
+
+        q5()
+        messagebox.showinfo("Correct answer!", "You have selected the correct answer.")
+
+    def fourWrong():
+        global fourScore
+
+        int(threeScore)
+
+        fourScore = threeScore
+
+        q5()
+        messagebox.showerror("Incorrect answer!", "The two network models are client-server and peer-to-peer.")
+
+    def q4():
+        # Clears the Window by identifying each 'child' on the Window and then destroying it until all of the 'children' have been destroyed
+        for widget in win.winfo_children():
+            widget.destroy()
+
+        q = open(f"Questions and Answers/Computer Science/Medium/Question 4/Question.txt", "r")
+        o1 = open(f"Questions and Answers/Computer Science/Medium/Question 4/Option 1.txt", "r")
+        o2 = open(f"Questions and Answers/Computer Science/Medium/Question 4/Option 2.txt", "r")
+        o3 = open(f"Questions and Answers/Computer Science/Medium/Question 4/Option 3.txt", "r")
+        
+        qLine = q.readlines()
+        o1Line = o1.readlines()
+        o2Line = o2.readlines()
+        o3Line = o3.readlines()
+
+        question = qLine[0]
+        optOne = o1Line[0]
+        optTwo = o2Line[0]
+        optThree = o3Line[0]
+
+        # Title
+        Label(win, image = compSciIcon, text = " Question 4: Computer Science (Medium)", compound = LEFT, bg = grey, fg = white, width = 2560, height = 120, font = (font, 24)).pack()
+
+        # Score label
+        Label(win, text = f"Score: {threeScore}", bg = white, fg = grey, font = (font, 12)).pack(anchor = W)
+
+        # Question label
+        Label(win, text = question, bg = white, fg = grey, font = (font, 12)).pack()
+
+        # A placeholder
+        Label(win, text = "", bg = white).pack()
+
+        # Option 1 button
+        Button(win, text = optOne, borderwidth = 0, command = fourWrong, bg = grey, fg = white, width = 32, height = 2, font = (font, 12)).pack()
+
+        # A placeholder
+        Label(win, text = "", bg = white).pack()
+
+        # Option 2 button
+        Button(win, text = optTwo, borderwidth = 0, command = fourWrong, bg = grey, fg = white, width = 32, height = 2, font = (font, 12)).pack()
+
+        # A placeholder
+        Label(win, text = "", bg = white).pack()
+
+        # Option 3 button
+        Button(win, text = optThree, borderwidth = 0, command = fourCorrect, bg = grey, fg = white, width = 32, height = 2, font = (font, 12)).pack()
+
+
+        # Exit button
+        Button(win, image = exitIcon, borderwidth = 0, command = exit, compound = LEFT, bg = grey, fg = white, width = 65, height = 65).pack(side = BOTTOM, anchor = NW)
+    
+        # Logout button
+        Button(win, image = logoutIcon, borderwidth = 0, command = main, compound = LEFT, bg = grey, fg = white, width = 65, height = 65).pack(side = BOTTOM, anchor = NW)
+
+        # To Dashboard Icon
+        Button(win, image = homeIcon, borderwidth = 0, command = dashboard, compound = LEFT, bg = grey, fg = white, width = 65, height = 65).pack(side = BOTTOM, anchor = NW)
+
+
+    def fiveCorrect():
+        global fiveScore
+
+        int(fourScore)
+
+        fiveScore = fourScore + 1
+
+        end()
+        messagebox.showinfo("Correct answer!", "You have selected the correct answer.")
+
+    def fiveWrong():
+        global fiveScore
+
+        int(fourScore)
+
+        fiveScore = fourScore
+
+        end()
+        messagebox.showerror("Inorrect answer!", "A protocol is a set of rules that govern how a network communicates.")
+
+    def q5():
+        # Clears the Window by identifying each 'child' on the Window and then destroying it until all of the 'children' have been destroyed
+        for widget in win.winfo_children():
+            widget.destroy()
+
+        q = open(f"Questions and Answers/Computer Science/Medium/Question 5/Question.txt", "r")
+        o1 = open(f"Questions and Answers/Computer Science/Medium/Question 5/Option 1.txt", "r")
+        o2 = open(f"Questions and Answers/Computer Science/Medium/Question 5/Option 2.txt", "r")
+        o3 = open(f"Questions and Answers/Computer Science/Medium/Question 5/Option 3.txt", "r")
+        
+        qLine = q.readlines()
+        o1Line = o1.readlines()
+        o2Line = o2.readlines()
+        o3Line = o3.readlines()
+
+        question = qLine[0]
+        optOne = o1Line[0]
+        optTwo = o2Line[0]
+        optThree = o3Line[0]
+
+        # Title
+        Label(win, image = compSciIcon, text = " Question 5: Computer Science (Medium)", compound = LEFT, bg = grey, fg = white, width = 2560, height = 120, font = (font, 24)).pack()
+
+        # Score label
+        Label(win, text = f"Score: {fourScore}", bg = white, fg = grey, font = (font, 12)).pack(anchor = W)
+
+        # Question label
+        Label(win, text = question, bg = white, fg = grey, font = (font, 12)).pack()
+
+        # A placeholder
+        Label(win, text = "", bg = white).pack()
+
+        # Option 1 button
+        Button(win, text = optOne, borderwidth = 0, command = fiveCorrect, bg = grey, fg = white, width = 44, height = 2, font = (font, 12)).pack()
+
+        # A placeholder
+        Label(win, text = "", bg = white).pack()
+
+        # Option 2 button
+        Button(win, text = optTwo, borderwidth = 0, command = fiveWrong, bg = grey, fg = white, width = 44, height = 2, font = (font, 12)).pack()
+
+        # A placeholder
+        Label(win, text = "", bg = white).pack()
+
+        # Option 3 button
+        Button(win, text = optThree, borderwidth = 0, command = fiveWrong, bg = grey, fg = white, width = 44, height = 2, font = (font, 12)).pack()
+
+
+        # Exit button
+        Button(win, image = exitIcon, borderwidth = 0, command = exit, compound = LEFT, bg = grey, fg = white, width = 65, height = 65).pack(side = BOTTOM, anchor = NW)
+    
+        # Logout button
+        Button(win, image = logoutIcon, borderwidth = 0, command = main, compound = LEFT, bg = grey, fg = white, width = 65, height = 65).pack(side = BOTTOM, anchor = NW)
+
+        # To Dashboard Icon
+        Button(win, image = homeIcon, borderwidth = 0, command = dashboard, compound = LEFT, bg = grey, fg = white, width = 65, height = 65).pack(side = BOTTOM, anchor = NW)
+
+
+    def end():
+        # Clears the Window by identifying each 'child' on the Window and then destroying it until all of the 'children' have been destroyed
+        for widget in win.winfo_children():
+            widget.destroy()
+
+
+        # Updates highscore if necessary
+        f = open(f"Highscores/{usernameIn}.txt", "r")
+        line = f.readlines()
+        prevHighscore = line[1]
+
+        if int(fiveScore) >= int(prevHighscore):
+            f = open(f"Highscores/{usernameIn}.txt", "w")
+
+            f.write("Computer Science (Medium)\n")
+            f.write(str(fiveScore))
+            
+        else:
+            pass
+
+
+        # Title
+        Label(win, image = compSciIcon, text = " Computer Science (Medium)", compound = LEFT, bg = grey, fg = white, width = 2560, height = 120, font = (font, 24)).pack()
+
+        # A placeholder
+        Label(win, text = "", bg = white).pack()
+
+        str(fiveScore)
+
+        # Overall score label
+        Label(win, text = f"Well done! You scored {fiveScore} / 5.", bg = white, fg = grey, font = (font, 18)).pack()
+
+        # Calculate percentage earned
+        int(fiveScore)
+        percentage = (fiveScore / 5) * 100
+
+        # Percentage label
+        Label(win, text = f"(That's {percentage}%)", bg = white, fg = grey, font = (font, 10, ITALIC)).pack()
+
+        # A placeholder
+        Label(win, text = "", bg = white).pack()
+
+        # A placeholder
+        Label(win, text = "", bg = white).pack()
+
+        # Back 2 home label
+        Label(win, text = f"Click the button below to go back home", bg = white, fg = grey, font = (font, 12)).pack()
+
+        # Another home button
+        Button(win, image = homeIcon, borderwidth = 0, command = dashboard, compound = LEFT, bg = grey, fg = white, width = 65, height = 65).pack()
+
+
+        # Exit button
+        Button(win, image = exitIcon, borderwidth = 0, command = exit, compound = LEFT, bg = grey, fg = white, width = 65, height = 65).pack(side = BOTTOM, anchor = NW)
+    
+        # Logout button
+        Button(win, image = logoutIcon, borderwidth = 0, command = main, compound = LEFT, bg = grey, fg = white, width = 65, height = 65).pack(side = BOTTOM, anchor = NW)
+
+        # To Dashboard Icon
+        Button(win, image = homeIcon, borderwidth = 0, command = dashboard, compound = LEFT, bg = grey, fg = white, width = 65, height = 65).pack(side = BOTTOM, anchor = NW)
+
+
+    q1()
 
 def compSciHard():
-    pass
+
+    score = 0
+
+    def oneCorrect():
+        global oneScore
+
+        int(score)
+
+        orgScore = score
+        oneScore = orgScore + 1
+
+        q2()
+        messagebox.showinfo("Correct answer!", "You have selected the correct answer.")
+
+    def oneWrong():
+        # With the 'global' method, variables declared in the function can be used elsewhere
+        global oneScore
+
+        int(score)
+
+        orgScore = score
+        oneScore = orgScore
+
+        q2()
+        messagebox.showerror("Incorrect answer!", "The three types of buses are the address, control and data buses.")
+
+    def q1():
+        # Clears the Window by identifying each 'child' on the Window and then destroying it until all of the 'children' have been destroyed
+        for widget in win.winfo_children():
+            widget.destroy()
+
+        q = open(f"Questions and Answers/Computer Science/Hard/Question 1/Question.txt", "r")
+        o1 = open(f"Questions and Answers/Computer Science/Hard/Question 1/Option 1.txt", "r")
+        o2 = open(f"Questions and Answers/Computer Science/Hard/Question 1/Option 2.txt", "r")
+        o3 = open(f"Questions and Answers/Computer Science/Hard/Question 1/Option 3.txt", "r")
+        o4 = open(f"Questions and Answers/Computer Science/Hard/Question 1/Option 4.txt", "r")
+        
+        qLine = q.readlines()
+        o1Line = o1.readlines()
+        o2Line = o2.readlines()
+        o3Line = o3.readlines()
+        o4Line = o4.readlines()
+
+        question = qLine[0]
+        optOne = o1Line[0]
+        optTwo = o2Line[0]
+        optThree = o3Line[0]
+        optFour = o4Line[0]
+
+        # Title
+        Label(win, image = compSciIcon, text = " Question 1: Computer Science (Hard)", compound = LEFT, bg = grey, fg = white, width = 2560, height = 120, font = (font, 24)).pack()
+
+        # Score label
+        Label(win, text = f"Score: {score}", bg = white, fg = grey, font = (font, 12)).pack(anchor = W)
+
+        # Question label
+        Label(win, text = question, bg = white, fg = grey, font = (font, 12)).pack()
+
+        # A placeholder
+        Label(win, text = "", bg = white).pack()
+
+        # Option 1 button
+        Button(win, text = optOne, borderwidth = 0, command = oneWrong, bg = grey, fg = white, width = 32, height = 2, font = (font, 12)).pack()
+
+        # A placeholder
+        Label(win, text = "", bg = white).pack()
+
+        # Option 2 button
+        Button(win, text = optTwo, borderwidth = 0, command = oneCorrect, bg = grey, fg = white, width = 32, height = 2, font = (font, 12)).pack()
+
+        # A placeholder
+        Label(win, text = "", bg = white).pack()
+
+        # Option 3 button
+        Button(win, text = optThree, borderwidth = 0, command = oneWrong, bg = grey, fg = white, width = 32, height = 2, font = (font, 12)).pack()
+
+        # A placeholder
+        Label(win, text = "", bg = white).pack()
+
+        # Option 4 button
+        Button(win, text = optFour, borderwidth = 0, command = oneWrong, bg = grey, fg = white, width = 32, height = 2, font = (font, 12)).pack()
+
+
+        # Exit button
+        Button(win, image = exitIcon, borderwidth = 0, command = exit, compound = LEFT, bg = grey, fg = white, width = 65, height = 65).pack(side = BOTTOM, anchor = NW)
+    
+        # Logout button
+        Button(win, image = logoutIcon, borderwidth = 0, command = main, compound = LEFT, bg = grey, fg = white, width = 65, height = 65).pack(side = BOTTOM, anchor = NW)
+
+        # To Dashboard Icon
+        Button(win, image = homeIcon, borderwidth = 0, command = dashboard, compound = LEFT, bg = grey, fg = white, width = 65, height = 65).pack(side = BOTTOM, anchor = NW)
+
+
+    def twoCorrect():
+        # With the 'global' method, variables declared in the function can be used elsewhere
+        global twoScore
+
+        int(oneScore)
+
+        twoScore = oneScore + 1
+
+        q3()
+        messagebox.showinfo("Correct answer!", "You have selected the correct answer.")
+
+    def twoWrong():
+        # With the 'global' method, variables declared in the function can be used elsewhere
+        global twoScore
+
+        int(oneScore)
+
+        twoScore = oneScore
+
+        q3()
+        messagebox.showerror("Incorrect answer!", "The program counter holds the address of the next instruction to be fetched.")
+
+    def q2():
+        # Clears the Window by identifying each 'child' on the Window and then destroying it until all of the 'children' have been destroyed
+        for widget in win.winfo_children():
+            widget.destroy()
+
+        q = open(f"Questions and Answers/Computer Science/Hard/Question 2/Question.txt", "r")
+        o1 = open(f"Questions and Answers/Computer Science/Hard/Question 2/Option 1.txt", "r")
+        o2 = open(f"Questions and Answers/Computer Science/Hard/Question 2/Option 2.txt", "r")
+        o3 = open(f"Questions and Answers/Computer Science/Hard/Question 2/Option 3.txt", "r")
+        o4 = open(f"Questions and Answers/Computer Science/Hard/Question 2/Option 4.txt", "r")
+        
+        qLine = q.readlines()
+        o1Line = o1.readlines()
+        o2Line = o2.readlines()
+        o3Line = o3.readlines()
+        o4Line = o4.readlines()
+
+        question = qLine[0]
+        optOne = o1Line[0]
+        optTwo = o2Line[0]
+        optThree = o3Line[0]
+        optFour = o4Line[0]
+
+        # Title
+        Label(win, image = compSciIcon, text = " Question 2: Computer Science (Hard)", compound = LEFT, bg = grey, fg = white, width = 2560, height = 120, font = (font, 24)).pack()
+
+        # Score label
+        Label(win, text = f"Score: {oneScore}", bg = white, fg = grey, font = (font, 12)).pack(anchor = W)
+
+        # Question label
+        Label(win, text = question, bg = white, fg = grey, font = (font, 12)).pack()
+
+        # A placeholder
+        Label(win, text = "", bg = white).pack()
+
+        # Option 1 button
+        Button(win, text = optOne, borderwidth = 0, command = twoWrong, bg = grey, fg = white, width = 32, height = 2, font = (font, 12)).pack()
+
+        # A placeholder
+        Label(win, text = "", bg = white).pack()
+
+        # Option 2 button
+        Button(win, text = optTwo, borderwidth = 0, command = twoWrong, bg = grey, fg = white, width = 32, height = 2, font = (font, 12)).pack()
+
+        # A placeholder
+        Label(win, text = "", bg = white).pack()
+
+        # Option 3 button
+        Button(win, text = optThree, borderwidth = 0, command = twoWrong, bg = grey, fg = white, width = 32, height = 2, font = (font, 12)).pack()
+
+        # A placeholder
+        Label(win, text = "", bg = white).pack()
+
+        # Option 4 button
+        Button(win, text = optFour, borderwidth = 0, command = twoCorrect, bg = grey, fg = white, width = 32, height = 2, font = (font, 12)).pack()
+
+
+        # Exit button
+        Button(win, image = exitIcon, borderwidth = 0, command = exit, compound = LEFT, bg = grey, fg = white, width = 65, height = 65).pack(side = BOTTOM, anchor = NW)
+    
+        # Logout button
+        Button(win, image = logoutIcon, borderwidth = 0, command = main, compound = LEFT, bg = grey, fg = white, width = 65, height = 65).pack(side = BOTTOM, anchor = NW)
+
+        # To Dashboard Icon
+        Button(win, image = homeIcon, borderwidth = 0, command = dashboard, compound = LEFT, bg = grey, fg = white, width = 65, height = 65).pack(side = BOTTOM, anchor = NW)
+
+
+    def threeCorrect():
+        # With the 'global' method, variables declared in the function can be used elsewhere
+        global threeScore
+
+        int(twoScore)
+
+        threeScore = twoScore + 1
+
+        q4()
+        messagebox.showinfo("Correct answer!", "You have selected the correct answer.")
+
+    def threeWrong():
+        # With the 'global' method, variables declared in the function can be used elsewhere
+        global threeScore
+
+        int(twoScore)
+
+        threeScore = twoScore
+
+        q4()
+        messagebox.showerror("Incorrect answer!", "Virtual memory is secondary storage used as additional RAM.")
+
+    def q3():
+        # Clears the Window by identifying each 'child' on the Window and then destroying it until all of the 'children' have been destroyed
+        for widget in win.winfo_children():
+            widget.destroy()
+
+        q = open(f"Questions and Answers/Computer Science/Hard/Question 3/Question.txt", "r")
+        o1 = open(f"Questions and Answers/Computer Science/Hard/Question 3/Option 1.txt", "r")
+        o2 = open(f"Questions and Answers/Computer Science/Hard/Question 3/Option 2.txt", "r")
+        o3 = open(f"Questions and Answers/Computer Science/Hard/Question 3/Option 3.txt", "r")
+        o4 = open(f"Questions and Answers/Computer Science/Hard/Question 3/Option 4.txt", "r")
+        
+        qLine = q.readlines()
+        o1Line = o1.readlines()
+        o2Line = o2.readlines()
+        o3Line = o3.readlines()
+        o4Line = o4.readlines()
+
+        question = qLine[0]
+        optOne = o1Line[0]
+        optTwo = o2Line[0]
+        optThree = o3Line[0]
+        optFour = o4Line[0]
+
+        # Title
+        Label(win, image = compSciIcon, text = " Question 3: Computer Science (Hard)", compound = LEFT, bg = grey, fg = white, width = 2560, height = 120, font = (font, 24)).pack()
+
+        # Score label
+        Label(win, text = f"Score: {twoScore}", bg = white, fg = grey, font = (font, 12)).pack(anchor = W)
+
+        # Question label
+        Label(win, text = question, bg = white, fg = grey, font = (font, 12)).pack()
+
+        # A placeholder
+        Label(win, text = "", bg = white).pack()
+
+        # Option 1 button
+        Button(win, text = optOne, borderwidth = 0, command = threeWrong, bg = grey, fg = white, width = 36, height = 2, font = (font, 12)).pack()
+
+        # A placeholder
+        Label(win, text = "", bg = white).pack()
+
+        # Option 2 button
+        Button(win, text = optTwo, borderwidth = 0, command = threeWrong, bg = grey, fg = white, width = 36, height = 2, font = (font, 12)).pack()
+
+        # A placeholder
+        Label(win, text = "", bg = white).pack()
+
+        # Option 3 button
+        Button(win, text = optThree, borderwidth = 0, command = threeCorrect, bg = grey, fg = white, width = 36, height = 2, font = (font, 12)).pack()
+
+        # A placeholder
+        Label(win, text = "", bg = white).pack()
+
+        # Option 4 button
+        Button(win, text = optFour, borderwidth = 0, command = threeWrong, bg = grey, fg = white, width = 36, height = 2, font = (font, 12)).pack()
+
+
+        # Exit button
+        Button(win, image = exitIcon, borderwidth = 0, command = exit, compound = LEFT, bg = grey, fg = white, width = 65, height = 65).pack(side = BOTTOM, anchor = NW)
+    
+        # Logout button
+        Button(win, image = logoutIcon, borderwidth = 0, command = main, compound = LEFT, bg = grey, fg = white, width = 65, height = 65).pack(side = BOTTOM, anchor = NW)
+
+        # To Dashboard Icon
+        Button(win, image = homeIcon, borderwidth = 0, command = dashboard, compound = LEFT, bg = grey, fg = white, width = 65, height = 65).pack(side = BOTTOM, anchor = NW)
+
+
+    def fourCorrect():
+        # With the 'global' method, variables declared in the function can be used elsewhere
+        global fourScore
+
+        int(threeScore)
+
+        fourScore = threeScore + 1
+
+        q5()
+        messagebox.showinfo("Correct answer!", "You have selected the correct answer.")
+
+    def fourWrong():
+        # With the 'global' method, variables declared in the function can be used elsewhere
+        global fourScore
+
+        int(threeScore)
+
+        fourScore = threeScore
+
+        q5()
+        messagebox.showerror("Incorrect answer!", "Routers send signals across the internet.")
+
+    def q4():
+        # Clears the Window by identifying each 'child' on the Window and then destroying it until all of the 'children' have been destroyed
+        for widget in win.winfo_children():
+            widget.destroy()
+
+        q = open(f"Questions and Answers/Computer Science/Hard/Question 4/Question.txt", "r")
+        o1 = open(f"Questions and Answers/Computer Science/Hard/Question 4/Option 1.txt", "r")
+        o2 = open(f"Questions and Answers/Computer Science/Hard/Question 4/Option 2.txt", "r")
+        o3 = open(f"Questions and Answers/Computer Science/Hard/Question 4/Option 3.txt", "r")
+        o4 = open(f"Questions and Answers/Computer Science/Hard/Question 4/Option 4.txt", "r")
+        
+        qLine = q.readlines()
+        o1Line = o1.readlines()
+        o2Line = o2.readlines()
+        o3Line = o3.readlines()
+        o4Line = o4.readlines()
+
+        question = qLine[0]
+        optOne = o1Line[0]
+        optTwo = o2Line[0]
+        optThree = o3Line[0]
+        optFour = o4Line[0]
+
+        # Title
+        Label(win, image = compSciIcon, text = " Question 4: Computer Science (Hard)", compound = LEFT, bg = grey, fg = white, width = 2560, height = 120, font = (font, 24)).pack()
+
+        # Score label
+        Label(win, text = f"Score: {threeScore}", bg = white, fg = grey, font = (font, 12)).pack(anchor = W)
+
+        # Question label
+        Label(win, text = question, bg = white, fg = grey, font = (font, 12)).pack()
+
+        # A placeholder
+        Label(win, text = "", bg = white).pack()
+
+        # Option 1 button
+        Button(win, text = optOne, borderwidth = 0, command = fourWrong, bg = grey, fg = white, width = 40, height = 2, font = (font, 12)).pack()
+
+        # A placeholder
+        Label(win, text = "", bg = white).pack()
+
+        # Option 2 button
+        Button(win, text = optTwo, borderwidth = 0, command = fourCorrect, bg = grey, fg = white, width = 40, height = 2, font = (font, 12)).pack()
+
+        # A placeholder
+        Label(win, text = "", bg = white).pack()
+
+        # Option 3 button
+        Button(win, text = optThree, borderwidth = 0, command = fourWrong, bg = grey, fg = white, width = 40, height = 2, font = (font, 12)).pack()
+
+        # A placeholder
+        Label(win, text = "", bg = white).pack()
+
+        # Option 4 button
+        Button(win, text = optFour, borderwidth = 0, command = fourWrong, bg = grey, fg = white, width = 40, height = 2, font = (font, 12)).pack()
+
+
+        # Exit button
+        Button(win, image = exitIcon, borderwidth = 0, command = exit, compound = LEFT, bg = grey, fg = white, width = 65, height = 65).pack(side = BOTTOM, anchor = NW)
+    
+        # Logout button
+        Button(win, image = logoutIcon, borderwidth = 0, command = main, compound = LEFT, bg = grey, fg = white, width = 65, height = 65).pack(side = BOTTOM, anchor = NW)
+
+        # To Dashboard Icon
+        Button(win, image = homeIcon, borderwidth = 0, command = dashboard, compound = LEFT, bg = grey, fg = white, width = 65, height = 65).pack(side = BOTTOM, anchor = NW)
+
+
+    def fiveCorrect():
+         # With the 'global' method, variables declared in the function can be used elsewhere
+        global fiveScore
+
+        int(fourScore)
+
+        fiveScore = fourScore + 1
+
+        end()
+        messagebox.showinfo("Correct answer!", "You have selected the correct answer.")
+
+    def fiveWrong():
+         # With the 'global' method, variables declared in the function can be used elsewhere
+        global fiveScore
+
+        int(fourScore)
+
+        fiveScore = fourScore
+
+        end()
+        messagebox.showerror("Incorrect answer!", "The hexadecimal number system is used to create a MAC Address.")
+
+    def q5():
+        # Clears the Window by identifying each 'child' on the Window and then destroying it until all of the 'children' have been destroyed
+        for widget in win.winfo_children():
+            widget.destroy()
+
+        q = open(f"Questions and Answers/Computer Science/Hard/Question 5/Question.txt", "r")
+        o1 = open(f"Questions and Answers/Computer Science/Hard/Question 5/Option 1.txt", "r")
+        o2 = open(f"Questions and Answers/Computer Science/Hard/Question 5/Option 2.txt", "r")
+        o3 = open(f"Questions and Answers/Computer Science/Hard/Question 5/Option 3.txt", "r")
+        o4 = open(f"Questions and Answers/Computer Science/Hard/Question 5/Option 4.txt", "r")
+        
+        qLine = q.readlines()
+        o1Line = o1.readlines()
+        o2Line = o2.readlines()
+        o3Line = o3.readlines()
+        o4Line = o4.readlines()
+
+        question = qLine[0]
+        optOne = o1Line[0]
+        optTwo = o2Line[0]
+        optThree = o3Line[0]
+        optFour = o4Line[0]
+
+        # Title
+        Label(win, image = compSciIcon, text = " Question 5: Computer Science (Hard)", compound = LEFT, bg = grey, fg = white, width = 2560, height = 120, font = (font, 24)).pack()
+
+        # Score label
+        Label(win, text = f"Score: {fourScore}", bg = white, fg = grey, font = (font, 12)).pack(anchor = W)
+
+        # Question label
+        Label(win, text = question, bg = white, fg = grey, font = (font, 12)).pack()
+
+        # A placeholder
+        Label(win, text = "", bg = white).pack()
+
+        # Option 1 button
+        Button(win, text = optOne, borderwidth = 0, command = fiveWrong, bg = grey, fg = white, width = 40, height = 2, font = (font, 12)).pack()
+
+        # A placeholder
+        Label(win, text = "", bg = white).pack()
+
+        # Option 2 button
+        Button(win, text = optTwo, borderwidth = 0, command = fiveWrong, bg = grey, fg = white, width = 40, height = 2, font = (font, 12)).pack()
+
+        # A placeholder
+        Label(win, text = "", bg = white).pack()
+
+        # Option 3 button
+        Button(win, text = optThree, borderwidth = 0, command = fiveWrong, bg = grey, fg = white, width = 40, height = 2, font = (font, 12)).pack()
+
+        # A placeholder
+        Label(win, text = "", bg = white).pack()
+
+        # Option 4 button
+        Button(win, text = optFour, borderwidth = 0, command = fiveCorrect, bg = grey, fg = white, width = 40, height = 2, font = (font, 12)).pack()
+
+
+        # Exit button
+        Button(win, image = exitIcon, borderwidth = 0, command = exit, compound = LEFT, bg = grey, fg = white, width = 65, height = 65).pack(side = BOTTOM, anchor = NW)
+    
+        # Logout button
+        Button(win, image = logoutIcon, borderwidth = 0, command = main, compound = LEFT, bg = grey, fg = white, width = 65, height = 65).pack(side = BOTTOM, anchor = NW)
+
+        # To Dashboard Icon
+        Button(win, image = homeIcon, borderwidth = 0, command = dashboard, compound = LEFT, bg = grey, fg = white, width = 65, height = 65).pack(side = BOTTOM, anchor = NW)
+
+
+    def end():
+        # Clears the Window by identifying each 'child' on the Window and then destroying it until all of the 'children' have been destroyed
+        for widget in win.winfo_children():
+            widget.destroy()
+
+
+        # Updates highscore if necessary
+        f = open(f"Highscores/{usernameIn}.txt", "r")
+        line = f.readlines()
+        prevHighscore = line[1]
+
+        if int(fiveScore) >= int(prevHighscore):
+            f = open(f"Highscores/{usernameIn}.txt", "w")
+
+            f.write("Computer Science (Hard)\n")
+            f.write(str(fiveScore))
+            
+        else:
+            pass
+
+
+        # Title
+        Label(win, image = compSciIcon, text = " Computer Science (Hard)", compound = LEFT, bg = grey, fg = white, width = 2560, height = 120, font = (font, 24)).pack()
+
+        # A placeholder
+        Label(win, text = "", bg = white).pack()
+
+        str(fiveScore)
+
+        # Overall score label
+        Label(win, text = f"Well done! You scored {fiveScore} / 5.", bg = white, fg = grey, font = (font, 18)).pack()
+
+        # Calculate percentage earned
+        int(fiveScore)
+        percentage = (fiveScore / 5) * 100
+
+        # Percentage label
+        Label(win, text = f"(That's {percentage}%)", bg = white, fg = grey, font = (font, 10, ITALIC)).pack()
+
+        # A placeholder
+        Label(win, text = "", bg = white).pack()
+
+        # A placeholder
+        Label(win, text = "", bg = white).pack()
+
+        # Back 2 home label
+        Label(win, text = f"Click the button below to go back home", bg = white, fg = grey, font = (font, 12)).pack()
+
+        # Another home button
+        Button(win, image = homeIcon, borderwidth = 0, command = dashboard, compound = LEFT, bg = grey, fg = white, width = 65, height = 65).pack()
+
+
+        # Exit button
+        Button(win, image = exitIcon, borderwidth = 0, command = exit, compound = LEFT, bg = grey, fg = white, width = 65, height = 65).pack(side = BOTTOM, anchor = NW)
+    
+        # Logout button
+        Button(win, image = logoutIcon, borderwidth = 0, command = main, compound = LEFT, bg = grey, fg = white, width = 65, height = 65).pack(side = BOTTOM, anchor = NW)
+
+        # To Dashboard Icon
+        Button(win, image = homeIcon, borderwidth = 0, command = dashboard, compound = LEFT, bg = grey, fg = white, width = 65, height = 65).pack(side = BOTTOM, anchor = NW)
+
+
+    q1()
 
 def compSciModeSelection():
     # Clears the Window by identifying each 'child' on the Window and then destroying it until all of the 'children' have been destroyed
@@ -1822,19 +3224,28 @@ def dashboard():
 
 
     # Title
-    Label(win, image = homeIcon, text = " Homepage", compound = LEFT, bg = grey, fg = white, width = 2560, height = 120, font = (font, 24)).pack()
+    Label(win, image = homeIcon, text = f" Homepage", compound = LEFT, bg = grey, fg = white, width = 2560, height = 120, font = (font, 24)).pack()
 
     # A placeholder
     Label(win, text = f"Your highscore is {currentHighscore} / 5 in {highSubject}", bg = white, fg = grey, font = (font, 12)).pack(anchor = W)
 
     # Geography quiz button
-    Button(win, text = "Computer Science", borderwidth = 0, command = compSciModeSelection, bg = red, fg = white, width = 16, height = 2, font = (font, 12)).pack()
+    Button(win, text = "Computer Science", borderwidth = 0, command = compSciModeSelection, bg = grey, fg = white, width = 16, height = 2, font = (font, 12)).pack()
 
     # A placeholder
     Label(win, text = "", bg = white).pack()
 
     # Flags quiz button
     Button(win, text = "Flags", borderwidth = 0, command = flagsModeSelection, bg = grey, fg = white, width = 16, height = 2, font = (font, 12)).pack()
+
+    # A placeholder
+    Label(win, text = "", bg = white).pack()
+
+    # A placeholder
+    Label(win, text = "", bg = white).pack()
+
+    # Flags quiz button
+    Button(win, text = "Delete account", borderwidth = 0, command = delete, bg = red, fg = white, width = 16, height = 2, font = (font, 12)).pack()
     
 
     # Exit button

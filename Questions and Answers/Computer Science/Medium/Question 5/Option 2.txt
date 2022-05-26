@@ -1,0 +1,1 @@
+b) A unique serial number assigned to an NIC
